@@ -20,3 +20,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// first make layout master
+// database : structtior
+// crud
+// 3 route :1 -
+
+//نوع السياره :
+//انواع السيارات_الفرعي
+//
+//-----------
+//لون السياره
+//المحرك
+//عادي او اوتوماتيك
+//فتحه بسقف
+//----------
+//كل الاعلانات :
+//-----
+//اضافه سياره
