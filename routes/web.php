@@ -2,39 +2,41 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'CarsController@index')->name('cars.index');
+Route::get('/cars/create', 'CarsController@create')->name('cars.create');
+Route::post('/cars/store', 'CarsController@store')->name('cars.store');
+Route::get('/cars/store/{id}', 'CarsController@edit')->name('cars.edit');
 
-// first make layout master
+
+Route::get('subcars','SubCarController@index')->name('subcar.index');
+Route::get('subcars/create','SubCarController@create')->name('subcar.create');
+Route::post('subcars/store','SubCarController@store')->name('subcar.store');
+
+Route::resource('advcar','AdvCarsController');
+
+
+
+
+
+
+// first make layout Master
 // database : structtior
 // crud
 // 3 route :1 -
 
-//نوع السياره :
-//انواع السيارات_الفرعي
+//نوع السياره :1
+//انواع السيارات_الفرعي2
 //
 //-----------
-//لون السياره
-//المحرك
-//عادي او اوتوماتيك
-//فتحه بسقف
+//لون السياره1
+//المحرك2
+//عادي او اوتوماتي
+//ibraheeeeeeeeeem??//فتحه بسقف
 //----------
 //كل الاعلانات :
 //-----
 //اضافه سياره
+
