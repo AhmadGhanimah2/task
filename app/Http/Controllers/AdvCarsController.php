@@ -55,9 +55,15 @@ class AdvCarsController extends Controller
      * @param  \App\AdvCars  $advCars
      * @return \Illuminate\Http\Response
      */
-    public function show(AdvCars $advCars)
+    public function show(AdvCars $advCars, id $id)
     {
-        //
+        $model = AdvCars::where('id', $id)->first();
+
+        if(! $model) {
+            // handle error here
+        }
+
+        return view('adv.index', compact('model'));
     }
 
     /**
