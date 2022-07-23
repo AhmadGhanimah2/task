@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\AdvCars;
+use App\SubCar;
 use Illuminate\Http\Request;
 
 class AdvCarsController extends Controller
@@ -26,8 +27,8 @@ class AdvCarsController extends Controller
      */
     public function create()
     {
-        $advs = AdvCars::all();
-        return view('adv.create',compact('advs'));
+        $subcars = SubCar::all();
+        return view('adv.create',compact('subcars'));
     }
 
     /**
@@ -40,11 +41,12 @@ class AdvCarsController extends Controller
     {
        $adv = new AdvCars();
        $adv->title = $request->title;
+       $adv->sub_car_id = $request->sub_car_id;
        $adv->description = $request->description;
        $adv->gear = $request->gear;
        $adv->color = $request->color;
        $adv->save();
-       return redirect()->route('advcar.index');
+       return redirect()->route('success');
 
 
     }
@@ -57,13 +59,7 @@ class AdvCarsController extends Controller
      */
     public function show(AdvCars $advCars, id $id)
     {
-        $model = AdvCars::where('id', $id)->first();
-
-        if(! $model) {
-            // handle error here
-        }
-
-        return view('adv.index', compact('model'));
+//
     }
 
     /**
@@ -72,9 +68,11 @@ class AdvCarsController extends Controller
      * @param  \App\AdvCars  $advCars
      * @return \Illuminate\Http\Response
      */
-    public function edit(AdvCars $advCars)
+    public function edit($id)
     {
-        //
+        $adv = AdvCars::find($id);
+        $subcars = SubCar::all();
+        return view('adv.edit',compact('subcars', 'adv'));
     }
 
     /**
@@ -84,9 +82,16 @@ class AdvCarsController extends Controller
      * @param  \App\AdvCars  $advCars
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdvCars $advCars)
+    public function update(Request $request, $id)
     {
-        //
+        $adv = AdvCars::find($id);
+       $adv->title = $request->title;
+       $adv->sub_car_id = $request->sub_car_id;
+       $adv->description = $request->description;
+       $adv->gear = $request->gear;
+       $adv->color = $request->color;
+       $adv->save();
+       return redirect()->route('advcar.index');
     }
 
     /**
@@ -95,8 +100,10 @@ class AdvCarsController extends Controller
      * @param  \App\AdvCars  $advCars
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdvCars $advCars)
+    public function destroy($id)
     {
-        //
+        $adv = AdvCars::find($id);
+        $adv->delete();
+        return redirect()->route('advcar.index');
     }
 }

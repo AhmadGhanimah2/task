@@ -17,12 +17,20 @@
                 <label for="exampleInputPassword1">description</label>
                 <input type="text" class="form-control" name="description" id="exampleInputPassword1" placeholder="description">
             </div>
+            <div class="form-group">
+                <label for="">Car</label>
+                <select name="sub_car_id" id="" class="form-control">
+                    @foreach ($subcars as $subcar)
+                        <option value="{{ $subcar->id }}">{{ $subcar->car->car_name . ' ' . $subcar->sub_car }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div>
                 <label for="cars">Choose a gear:</label>
 
                 <select name="gear">
-                    <option value="Manuel">Manuel</option>
-                    <option value="Auto">Auto</option>
+                    <option value="0">Manuel</option>
+                    <option value="1">Auto</option>
                 </select>
             </div>
             <div>

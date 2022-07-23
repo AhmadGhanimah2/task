@@ -17,6 +17,15 @@ Route::post('subcars/store','SubCarController@store')->name('subcar.store');
 
 Route::resource('advcar','AdvCarsController');
 
+Route::get('success', function () {
+    return view('success');
+})->name('success');
+
+//update , store same 
+// create , edit same ->just view form
+// index list all data
+
+
 
 
 
